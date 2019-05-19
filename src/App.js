@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import { Container, Row } from 'react-bootstrap';
+import  { Leaderboard } from './leaderboard';
 import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      team: [
+        {
+          name: 'something',
+          kills: 12,
+          deaths: 2
+        },
+        {
+          "name": "ghsfg",
+          "kills": 2,
+          'deaths': 12
+        },
+        {
+          "name": "djhgnd",
+          "kills": 45,
+          "deaths": 23
+        },
+        {
+          "name": "bvnb",
+          "kills": 3,
+          "deaths": 23
+        },
+        {
+          "name": "nbcnvcbn",
+          "kills": 54,
+          "deaths": 23
+        },
+        {
+          "name": "rtytuytu",
+          "kills": 63,
+          "deaths": 23
+        },
+        {
+          "name": "fghgdfhdfghd",
+          "kills": 54,
+          "deaths": 3
+        }
+      ],
+    };
+  }
+
+  render () {
+    return (
+      <div className="App">
+        <Container>
+          <Row>
+            <Leaderboard data={this.state.team} />
+          </Row>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default App;
