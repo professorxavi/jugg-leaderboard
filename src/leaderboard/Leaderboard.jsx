@@ -18,7 +18,7 @@ class Leaderboard extends Component {
 
     return (
     <Col xs={12}>
-      <Table striped hover borderless size="sm" variant="darkt">
+      <Table striped borderless size="sm" variant="darkt">
         <thead>
           <tr>
             <th className="left-align">Name</th>
