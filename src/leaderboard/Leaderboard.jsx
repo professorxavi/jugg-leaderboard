@@ -12,7 +12,7 @@ class Leaderboard extends Component {
     });;
     const something = sortedData.map((c, index) => {
       return(
-        <Competitor data={c} />
+        <Competitor data={c} key={c._id} />
       );
     });
 

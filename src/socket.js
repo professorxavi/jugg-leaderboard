@@ -2,7 +2,7 @@ import 'dotenv/config';
 import io from 'socket.io-client';
 
 export default function () {
-  const socket = io.connect(process.env.socketurl)
+  const socket = io.connect('http://localhost:4000');
 
   function updateTable(onMessageReceived) {
     socket.on('update table', onMessageReceived)

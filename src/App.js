@@ -12,18 +12,17 @@ class App extends Component {
       team: [],
       client: socket(),
     };
-    this.getLeaderboard = this.getLeaderboard.bind(this);
+    this.updateTable = this.updateTable.bind(this);
   }
   componentDidMount() {
-    this.state.client.updateTable(this.updateTable);
-    this.getLeaderboard();
-  }
-  componentWillUpdate() {
-    this.state.client.updateTable(this.updateTable);
-    this.getLeaderboard();
+    this.updateTable();
   }
 
-  getLeaderboard() {
+  componentDidUpdate(previousProps, previousState) {
+    this.state.client.updateTable(this.updateTable);
+  }
+
+  updateTable() {
     axios.get('http://localhost:7777/leaderboard/')
       .then(response => this.setState({ team: response.data }));
   }
