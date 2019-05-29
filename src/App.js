@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+import socket from './socket';
 import { Container, Row } from 'react-bootstrap';
 import  { Leaderboard } from './leaderboard';
 import './App.scss';
@@ -7,44 +9,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      team: [
-        {
-          name: 'something',
-          kills: 12,
-          deaths: 2
-        },
-        {
-          "name": "ghsfg",
-          "kills": 2,
-          'deaths': 12
-        },
-        {
-          "name": "djhgnd",
-          "kills": 45,
-          "deaths": 23
-        },
-        {
-          "name": "bvnb",
-          "kills": 3,
-          "deaths": 23
-        },
-        {
-          "name": "nbcnvcbn",
-          "kills": 54,
-          "deaths": 23
-        },
-        {
-          "name": "rtytuytu",
-          "kills": 63,
-          "deaths": 23
-        },
-        {
-          "name": "fghgdfhdfghd",
-          "kills": 54,
-          "deaths": 3
-        }
-      ],
+      team: [],
+      client: socket(),
     };
+    this.getLeaderboard = this.getLeaderboard.bind(this);
+  }
+  componentDidMount() {
+    this.state.client.updateTable(this.updateTable);
+    this.getLeaderboard();
+  }
+  componentWillUpdate() {
+    this.state.client.updateTable(this.updateTable);
+    this.getLeaderboard();
+  }
+
+  getLeaderboard() {
+    axios.get('http://localhost:7777/leaderboard/')
+      .then(response => this.setState({ team: response.data }));
   }
 
   render () {
